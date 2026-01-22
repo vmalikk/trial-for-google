@@ -5,11 +5,15 @@ import { OAuthProvider } from "appwrite";
 const app = document.getElementById("app");
 const loginBtn = document.getElementById("btn-siwg");
 
+// Use current origin for OAuth redirects (works for both localhost and Vercel)
+const successUrl = window.location.origin;
+const failureUrl = `${window.location.origin}/fail`;
+
 const loginSIWG = async () => {
     account.createOAuth2Session(
         OAuthProvider.Google,
-        "http://localhost:5173",
-        "http://localhost:/5173/fail"
+        successUrl,
+        failureUrl
     );
 };
 
